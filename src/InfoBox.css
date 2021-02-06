@@ -1,0 +1,9 @@
+.infoBox {
+    background-color: red;
+    flex: 1;
+}
+
+/* all infoboxes except LAST CHILD */
+.infoBox:not(:last-child) {
+    margin-right: 20px;
+}
