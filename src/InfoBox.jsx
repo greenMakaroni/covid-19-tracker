@@ -2,9 +2,14 @@ import React from 'react'
 import { Card, CardContent, Typography } from "@material-ui/core";
 import "./InfoBox.css";
 
-function InfoBox({ title, cases, total }) {
+function InfoBox({ title, cases, total, ...props }) {
     return (
-        <Card className="infoBox">
+        <Card 
+            onMouseOver={props.onMouseOver} 
+            className={
+                props.casesType === 'cases' ? "infoBox_c" : 
+                props.casesType === "recovered" ? "infoBox_r" : 
+                props.casesType === "deaths" ? "infoBox_d" : "infoBox_c"}>
 
             <CardContent>
             {/* title */}

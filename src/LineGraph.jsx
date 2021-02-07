@@ -46,11 +46,11 @@ const options = {
     },
 }
 
-function LineGraph( { casesType = "cases" } ) {
+function LineGraph( { casesType } ) {
 
     const [data, setData] = new useState({});
 
-    const buildChartData = (data, casesType='cases') => {
+    const buildChartData = (data, casesType) => {
         const chartData = [];
         let lastDataPoint;
 
@@ -76,7 +76,7 @@ function LineGraph( { casesType = "cases" } ) {
             .then((res, err) => err ? console.log(err) : res.json())
             .then(data => {
     
-                const chartData = buildChartData(data, "cases");
+                const chartData = buildChartData(data, casesType);
                 setData(chartData);
             });
         }
@@ -91,8 +91,15 @@ function LineGraph( { casesType = "cases" } ) {
                 data={{
                     datasets: [{
                         data: data,
-                        backgroundColor: 'rgba(204, 16, 52, 0.5)',
-                        borderColor: 'red'
+                        backgroundColor: 
+                            casesType === 'cases' ? "rgba(204, 16, 52, 0.5)" : 
+                            casesType === "recovered" ? "rgba(125, 215, 29, 0.5)" : 
+                            casesType === "deaths" ? "rgba(112, 112, 112, 0.5)" : "rgba(204, 16, 52, 0.5)",
+
+                        borderColor: 
+                            casesType === 'cases' ? "rgb(204, 16, 52)" : 
+                            casesType === "recovered" ? "rgb(125, 215, 29)" : 
+                            casesType === "deaths" ? "rgb(112, 112, 112)" : "rgba(204, 16, 52)",
                     }],
                 }
             }

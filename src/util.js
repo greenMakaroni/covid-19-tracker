@@ -3,6 +3,13 @@ import numeral from "numeral";
 import { Circle, Popup } from "react-leaflet";
 import { rgbToHex } from "@material-ui/core";
 
+//Prettyfi di numbers
+
+export const prettyPrintStat = (stat) => {
+    return(stat ? `${numeral(stat).format("0,000")}` : stat);
+}
+
+
 //Sort the data by number of total cases: descending
 export const sortData = data => {
     const sortedData = [...data];
@@ -27,13 +34,13 @@ const casesTypeColors = {
         multiplier: 600,
     },
     deaths: {
-        hex: "#fb4443",
+        hex: "#707070",
         multiplier: 1300,
     }
 }
 
 //Draw circles on the map with tooltip
-export const showDataOnMap = (data, casesType='cases') => (
+export const showDataOnMap = (data, casesType) => (
     data.map((country) => (
         <Circle 
             center={ [ country.countryInfo.lat, country.countryInfo.long ] }

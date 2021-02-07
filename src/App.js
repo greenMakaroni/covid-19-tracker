@@ -1,14 +1,12 @@
 
-//todo: finish tut min 3:52:31
-
 import { useState, useEffect } from "react";
-//custom components
+//custom components & functions 
 import InfoBox from "./InfoBox.jsx";
 import Map from "./Map.jsx";
 import Table from "./Table.jsx";
 import LineGraph from "./LineGraph.jsx";
 import "leaflet/dist/leaflet.css";
-import { sortData } from "./util";
+import { sortData, prettyPrintStat } from "./util";
 
 // material ui components
 import { FormControl, Select, MenuItem, Card, CardContent } from "@material-ui/core";
@@ -23,6 +21,7 @@ function App() {
   const [ mapCenter, setMapCenter ] = new useState({ lat: 51.509865, lng: -0.118092 });
   const [ mapZoom, setMapZoom ] = new useState(3);
   const [ mapCountries, setMapCountries ] = new useState([]);
+  const [ casesType, setCasesType] = new useState("cases")
 
   //This use effect is triggered always to populate worldwide at load.
   // Then onCountryChange can override the data if form is changed.
@@ -111,28 +110,35 @@ function App() {
             <div className="app__stats">
 
               <InfoBox 
+                onMouseOver={e => setCasesType('cases')}
+                casesType={ casesType }
                 title="Coronavirus cases"
-                cases={countryInfo.todayCases}
-                total={countryInfo.cases}>
+                cases={prettyPrintStat(countryInfo.todayCases)}
+                total={prettyPrintStat(countryInfo.cases)}>
               </InfoBox>
 
               <InfoBox 
+                onMouseOver={e => setCasesType('recovered')}
+                casesType={ casesType }
                 title="Recovered" 
-                cases={countryInfo.todayRecovered} 
-                total={countryInfo.recovered}>
+                cases={prettyPrintStat(countryInfo.todayRecovered)} 
+                total={prettyPrintStat(countryInfo.recovered)}>
               </InfoBox>
 
               <InfoBox 
+                onMouseOver={e => setCasesType('deaths')}
+                casesType={ casesType }
                 title="Deaths" 
-                cases={countryInfo.todayDeaths} 
-                total={countryInfo.deaths}>
+                cases={prettyPrintStat(countryInfo.todayDeaths)} 
+                total={prettyPrintStat(countryInfo.deaths)}>
               </InfoBox>
             </div>
         
           <Map 
           countries={ mapCountries } 
           center={ mapCenter } 
-          zoom={ mapZoom } />
+          zoom={ mapZoom }
+          casesType={ casesType } />
 
       </div>
   
@@ -140,11 +146,12 @@ function App() {
         <CardContent>
           <h3> Live Cases by Country </h3>
           <Table tableData={tableData} />
-
-          <h3> Worldwide new cases </h3>
-          <LineGraph />
         </CardContent>
 
+        <CardContent>
+          <h3> Worldwide {casesType} </h3>
+          <LineGraph casesType={ casesType }/>
+        </CardContent>
       </Card>
 
     </div>

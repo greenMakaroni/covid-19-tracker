@@ -1,9 +1,46 @@
-.infoBox {
-    background-color: red;
+
+.infoBox_c {
     flex: 1;
+    transition: 0.2s ease-in !important; 
+}
+
+.infoBox_c:hover {
+    border-top: 5px solid rgba(204, 16, 52, 0.9);
+}
+
+.infoBox_r {
+    flex: 1;
+    transition: 0.2s ease-in !important;
+}
+
+.infoBox_r:hover {
+    border-top: 5px solid rgba(125, 215, 29, 0.9);
+}
+
+.infoBox_d {
+    flex: 1;
+    transition: 0.2s ease-in !important;
+}
+
+.infoBox_d:hover {
+    border-top: 5px solid rgba(112, 112, 112, 0.9);
 }
 
 /* all infoboxes except LAST CHILD */
 .infoBox:not(:last-child) {
     margin-right: 20px;
+}
+
+.infoBox__cases {
+    color: #cc1034;
+    font-weight: 600;
+    font-size: 1.7rem;
+    margin-bottom: 0.5rem;
+}
+
+.infoBox__total {
+    color: #6c757d;
+    font-weight: 700 !important;
+    font-size: 0.8rem !important;
+    margin-top: 15px !important;
 }

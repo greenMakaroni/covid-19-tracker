@@ -1,4 +1,5 @@
 import React from 'react'
+import numeral from "numeral";
 
 function Table({ tableData }) {
     return (
@@ -7,7 +8,7 @@ function Table({ tableData }) {
             { tableData.map(({ country, cases }) => ( 
                 <tr  key={ country }> 
                     <td> { country } </td>
-                    <td> <strong> { cases } </strong> </td>
+                    <td> <strong> { numeral(cases).format("0,000") } </strong> </td>
                 </tr> 
                 ))}
                 
