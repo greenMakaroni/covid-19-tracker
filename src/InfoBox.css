@@ -1,28 +1,27 @@
-
-.infoBox_c {
+.infoBox_default {
     flex: 1;
+    cursor: pointer;
     transition: 0.2s ease-in !important; 
 }
 
-.infoBox_c:hover {
+.infoBox_c {
+    flex: 1;
+    cursor: pointer;
+    transition: 0.2s ease-in !important; 
     border-top: 5px solid rgba(204, 16, 52, 0.9);
 }
 
 .infoBox_r {
     flex: 1;
+    cursor: pointer;
     transition: 0.2s ease-in !important;
-}
-
-.infoBox_r:hover {
     border-top: 5px solid rgba(125, 215, 29, 0.9);
 }
 
 .infoBox_d {
     flex: 1;
+    cursor: pointer;
     transition: 0.2s ease-in !important;
-}
-
-.infoBox_d:hover {
     border-top: 5px solid rgba(112, 112, 112, 0.9);
 }
 

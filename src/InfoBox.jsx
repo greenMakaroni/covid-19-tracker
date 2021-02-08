@@ -4,12 +4,14 @@ import "./InfoBox.css";
 
 function InfoBox({ title, cases, total, ...props }) {
     return (
-        <Card 
-            onMouseOver={props.onMouseOver} 
-            className={
+        <Card //TERNARY CHAMP
+            onClick={props.onClick} 
+            className={ 
+                props.isActive ?
                 props.casesType === 'cases' ? "infoBox_c" : 
                 props.casesType === "recovered" ? "infoBox_r" : 
-                props.casesType === "deaths" ? "infoBox_d" : "infoBox_c"}>
+                props.casesType === "deaths" ? "infoBox_d" : "infoBox_c"
+                : "infoBox_default"}>
 
             <CardContent>
             {/* title */}

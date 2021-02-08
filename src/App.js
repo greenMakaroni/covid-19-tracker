@@ -21,7 +21,7 @@ function App() {
   const [ mapCenter, setMapCenter ] = new useState({ lat: 51.509865, lng: -0.118092 });
   const [ mapZoom, setMapZoom ] = new useState(3);
   const [ mapCountries, setMapCountries ] = new useState([]);
-  const [ casesType, setCasesType] = new useState("cases")
+  const [ casesType, setCasesType] = new useState("cases");
 
   //This use effect is triggered always to populate worldwide at load.
   // Then onCountryChange can override the data if form is changed.
@@ -84,10 +84,10 @@ function App() {
       <div className="app__left">
             <div className="app__header">
 
-              <h1> Covid-19  Tracker </h1>
+              <h1> COVID-19   TRACKER  </h1>
 
               <div>
-              <FormControl>
+              <FormControl className="menuItem">
                 <Select
                   onChange={onCountryChange}
                   variant="outlined"
@@ -110,7 +110,8 @@ function App() {
             <div className="app__stats">
 
               <InfoBox 
-                onMouseOver={e => setCasesType('cases')}
+                onClick={e => (setCasesType('cases'))}
+                isActive={ casesType === 'cases' }
                 casesType={ casesType }
                 title="Coronavirus cases"
                 cases={prettyPrintStat(countryInfo.todayCases)}
@@ -118,7 +119,8 @@ function App() {
               </InfoBox>
 
               <InfoBox 
-                onMouseOver={e => setCasesType('recovered')}
+                onClick={e => setCasesType('recovered')}
+                isActive={ casesType === 'recovered' }
                 casesType={ casesType }
                 title="Recovered" 
                 cases={prettyPrintStat(countryInfo.todayRecovered)} 
@@ -126,7 +128,8 @@ function App() {
               </InfoBox>
 
               <InfoBox 
-                onMouseOver={e => setCasesType('deaths')}
+                onClick={e => setCasesType('deaths')}
+                isActive={ casesType === 'deaths' }
                 casesType={ casesType }
                 title="Deaths" 
                 cases={prettyPrintStat(countryInfo.todayDeaths)} 

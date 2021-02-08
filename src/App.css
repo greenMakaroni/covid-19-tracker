@@ -8,6 +8,12 @@ body {
 
 .app {
   display: flex;
+  background-color: #f3f2f8;
+}
+
+/* FormControl styling from material-ui  */
+.menuItem { 
+  background-color: white !important; 
 }
 
 .app__header {
